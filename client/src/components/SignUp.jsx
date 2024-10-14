@@ -4,20 +4,20 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
-    const [name, setName] = React.useState('');
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
-    const Navigate = useNavigate();
+    const [name, setName] = React.useState(''); // Estado para armazenar o nome
+    const [email, setEmail] = React.useState(''); // Estado para armazenar o email
+    const [password, setPassword] = React.useState(''); // Estado para armazenar a senha
+    const Navigate = useNavigate(); // Hook para navegação programática
 
     const handleSubmit = (event) => {
-        event.preventDefault();
+        event.preventDefault(); // Previne o comportamento padrão de submissão do formulário
         axios.post('http://localhost:3001/register', { name, email, password })
             .then(result => {
-                console.log(result);
-                Navigate('/login'); 
+                console.log(result); // Loga o resultado no console
+                Navigate('/login'); // Navega para a página de login após registro bem-sucedido
             })
             .catch(err => {
-                console.log(err);
+                console.log(err); // Loga o erro no console em caso de falha
             });
     }
 
@@ -34,7 +34,7 @@ const SignUp = () => {
                             id="name"
                             placeholder="Enter name"
                             name='name'
-                            onChange={(e) => setName(e.target.value)}
+                            onChange={(e) => setName(e.target.value)} // Atualiza o estado do nome
                         />
                     </div>
                     <div className="form-group mb-3">
@@ -45,7 +45,7 @@ const SignUp = () => {
                             id="exampleInputEmail1"
                             placeholder="Enter email"
                             name='email'
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={(e) => setEmail(e.target.value)} // Atualiza o estado do email
                         />
                     </div>
                     <div className="form-group mb-4">
@@ -56,20 +56,20 @@ const SignUp = () => {
                             id="exampleInputPassword1"
                             placeholder="Password"
                             name='password'
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e) => setPassword(e.target.value)} // Atualiza o estado da senha
                         />
                     </div>
                     <div className="d-grid gap-1">
-                        <button type="submit" className="btn btn-primary mb-2">Register</button>
+                        <button type="submit" className="btn btn-primary mb-2">Register</button> {/* Botão de envio do formulário */}
                     </div>
                 </form>
             </div>
             <div className="text-center mt-3">
                 <p>Already have an account?</p>
-                <Link to="/login" className="btn btn-secondary">Login</Link>
+                <Link to="/login" className="btn btn-secondary">Login</Link> {/* Link para a página de login */}
             </div>
         </div>
     );
 }
 
-export default SignUp;
+export default SignUp; // Exporta o componente SignUp como padrão
