@@ -1,23 +1,22 @@
 import React from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
     const [name, setName] = React.useState(''); // Estado para armazenar o nome
     const [email, setEmail] = React.useState(''); // Estado para armazenar o email
     const [password, setPassword] = React.useState(''); // Estado para armazenar a senha
-    const Navigate = useNavigate(); // Hook para navegação programática
+    const navigate = useNavigate(); // Hook para navegação programática
 
     const handleSubmit = (event) => {
         event.preventDefault(); // Previne o comportamento padrão de submissão do formulário
         axios.post('http://localhost:3001/register', { name, email, password })
             .then(result => {
                 console.log(result); // Loga o resultado no console
-                Navigate('/login'); // Navega para a página de login após registro bem-sucedido
+                navigate('/login'); // Navega para a página de login após registro bem-sucedido
             })
             .catch(err => {
-                console.log(err); // Loga o erro no console em caso de falha
+                return; // Loga o erro no console em caso de falha
             });
     }
 
